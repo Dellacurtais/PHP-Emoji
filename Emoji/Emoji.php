@@ -75,14 +75,16 @@ class Emoji extends EmojiSets {
 	public function generateEmoji(){
 		$Build = false;		
 		if (file_exists(__DIR__."/DataJson/emojiConfig.json")){
-			$this->LastConfig = file_get_contents(__DIR__."/DataJson/emojiConfig.json");
-			if ($this->LastConfig != $this->PackIcon){
+			$this->LastConfig = json_decode(file_get_contents(__DIR__."/DataJson/emojiConfig.json"));
+			if ($this->LastConfig->Pack != $this->PackIcon){
+				$Build = true;	
+			}
+			if ($this->LastConfig->Assets != $this->DirAssets){
 				$Build = true;	
 			}			
 		}else{
 			$Build = true;
 		}
-				
 		if ($Build){
 			$this->LoadEmojis(true);
 			$Array = array();
@@ -91,7 +93,10 @@ class Emoji extends EmojiSets {
 			}
 			$this->Emojis = $Array; 
 			file_put_contents(__DIR__."/DataJson/emoji.json",json_encode($Array));
-			file_put_contents(__DIR__."/DataJson/emojiConfig.json",$this->PackIcon);
+			file_put_contents(__DIR__."/DataJson/emojiConfig.json",json_encode(array(
+				"Pack" => $this->PackIcon, 
+				"Assets" => $this->DirAssets
+			)));
 		}
 	}
 }
