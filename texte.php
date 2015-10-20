@@ -11,6 +11,10 @@ $Emoji->setDirAssets("./Emoji/AssetsEmoji/");
 
 //Set Pack Icons
 // Options -> IconsB&W, IconsIphone, IconsAndroid, IconsTwitter, IconsWind
+
+/* Download Packs https://github.com/Dellacurtais/PHP-Emoji/tree/master/Emoji/AssetsEmoji/Icons
+*  Extract On Dir Assets (ex: ./Emoji/AssetsEmoji/)
+*/  
 $Emoji->setDirPack("IconsIphone");
 
 // Generate Emojis (important)
